@@ -24,7 +24,6 @@ public class DataAnalyzer {
 	}
 	
 	
-	
 	public void briefCurrentXRate() {
 		System.out.println("$1 is " + this.dataCrawled.currentXrate.getRate() + "KRW at " + this.dataCrawled.currentXrate.getTime());
 	}
