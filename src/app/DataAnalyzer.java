@@ -60,6 +60,7 @@ public class DataAnalyzer {
 		k.recentXRateTrend();
 		k.briefCurrentWeather("St.Louis");
 		k.briefCurrentWeather("Seoul");
+		System.out.println("Is it working");
 	}
 
 }
