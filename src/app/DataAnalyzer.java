@@ -37,18 +37,26 @@ public class DataAnalyzer {
 		if (where == "St.Louis") {
 			System.out.println("St.Louis's current temperature is " + this.dataCrawled.stlWeatherDat.getCurrent() +"¡ÆC. High of " + this.dataCrawled.stlWeatherDat.getMax() + "¡ÆC and low of " + this.dataCrawled.stlWeatherDat.getMin() + "¡ÆC. Feels like " + this.dataCrawled.stlWeatherDat.getFeels() +"¡ÆC.");
 		}
-		else {
+		else if (where == "Seoul"){
 			System.out.println("Seoul's current temperature is " + this.dataCrawled.seoulWeatherDat.getCurrent() +"¡ÆC. High of " + this.dataCrawled.seoulWeatherDat.getMax() + "¡ÆC and low of " + this.dataCrawled.seoulWeatherDat.getMin() + "¡ÆC. Feels like " + this.dataCrawled.seoulWeatherDat.getFeels() + "¡ÆC.");
 		}
 	}
 	
 	public void feelsDifferent() {
 		if(this.dataCrawled.stlWeatherDat.feelsDiff) {
-			if(this.dataCrawled.stlWeatherDat.current > this.dataCrawled.stlWeatherDat.feels) {
-				
+			if(this.dataCrawled.stlWeatherDat.current < this.dataCrawled.stlWeatherDat.feels) {
+				System.out.println("St.Louis weather feels significantly hotter than it actually is.");
 			}
-			else {
-				
+			if(this.dataCrawled.stlWeatherDat.current > this.dataCrawled.stlWeatherDat.feels)  {
+				System.out.println("St.Louis weather feels significantly colder than it actually is.");
+			}
+		}
+		if(this.dataCrawled.seoulWeatherDat.feelsDiff) {
+			if(this.dataCrawled.seoulWeatherDat.current < this.dataCrawled.seoulWeatherDat.feels) {
+				System.out.println("Seoul weather feels significantly hotter than it actually is.");
+			}
+			if(this.dataCrawled.seoulWeatherDat.current > this.dataCrawled.seoulWeatherDat.feels)  {
+				System.out.println("Seoul weather feels significantly colder than it actually is.");
 			}
 		}
 	}
@@ -60,7 +68,7 @@ public class DataAnalyzer {
 		k.recentXRateTrend();
 		k.briefCurrentWeather("St.Louis");
 		k.briefCurrentWeather("Seoul");
-		System.out.println("Is it working");
+		k.feelsDifferent();
 	}
 
 }
