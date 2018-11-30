@@ -60,14 +60,33 @@ public class DataAnalyzer {
 		}
 	}
 	
+	public void displayKorHeadlines() {
+		System.out.println("At " + this.dataCrawled.korHeadlines.date + "...");
+		for (int i = 0; i < this.dataCrawled.korHeadlines.headlines.length; i++) {
+			System.out.println(this.dataCrawled.korHeadlines.headlines[i]);
+		}
+	}
+	
+	public void displayUSHeadlines() {
+		System.out.println("At " + this.dataCrawled.usHeadlines.date + "...");
+		for (int i = 0; i < this.dataCrawled.usHeadlines.headlines.length; i++) {
+			System.out.println(this.dataCrawled.usHeadlines.headlines[i]);
+		}
+	}
+	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		DataAnalyzer k = new DataAnalyzer(new DataCrawlers());
 		k.briefCurrentXRate();
 		k.recentXRateTrend();
+		System.out.println("\n");
 		k.briefCurrentWeather("St.Louis");
 		k.briefCurrentWeather("Seoul");
 		k.feelsDifferent();
+		System.out.println("\n");
+		k.displayKorHeadlines();
+		System.out.println("");
+		k.displayUSHeadlines();
 	}
 
 }

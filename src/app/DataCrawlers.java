@@ -13,6 +13,8 @@ public class DataCrawlers {
 	int XRateHistSize;
 	WeatherDat seoulWeatherDat;
 	WeatherDat stlWeatherDat;
+	Headlines korHeadlines;
+	Headlines usHeadlines;
 	
 	public DataCrawlers() throws IOException {
 		this.currentXrate = KorXRate();
@@ -20,6 +22,8 @@ public class DataCrawlers {
 		this.XRateHistSize = this.XRateHist.length;
 		this.seoulWeatherDat = SeoulWeather();
 		this.stlWeatherDat = StlWeather();
+		this.korHeadlines = new Headlines(getKorHeadlines(), this.currentXrate.time);
+		this.usHeadlines = new Headlines(getUSHeadlines(),this.currentXrate.time);
 		System.out.println("Crawl Complete");
 	}
 	/**
@@ -142,8 +146,29 @@ public class DataCrawlers {
 		return this.XRateHistSize;
 	}
 	
+	public String[] getKorHeadlines() throws IOException {
+		Elements headlines = jsoupCrawler("http://m.chosun.com/svc/ranking.html","tt");
+		String[] headlines1 = headlines.toString().split("<span class=\"tt\"> ");
+		String[] headlines2 = new String[headlines1.length - 1];
+		for (int i = 1; i < headlines1.length; i++) {
+			headlines2[i-1] = headlines1[i].split(" </span>")[0];
+		}
+		return headlines2;
+	}
+	
+	public String[] getUSHeadlines() throws IOException {
+		Elements headlines = jsoupCrawler("http://m.cnn.com/en","afe4286c");
+		String[] headlines1 = headlines.toString().split("\">");
+		String[] headlines2 = new String[headlines1.length - 2];
+		for (int i = 2; i < headlines1.length; i++) {
+			headlines2[i-2] = headlines1[i].split("</a></li>")[0];
+		}
+		return headlines2;
+	}
+	
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
+
 	}
 
 }
