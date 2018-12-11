@@ -37,7 +37,8 @@ public class DataAnalyzer {
 		for (int i = 0; i < this.dataCrawled.XRateHist.length; i++) {
 			total = total + this.dataCrawled.XRateHist[i].rate;
 		}
-		double ave = total/this.dataCrawled.XRateHistSize;
+		double ave1 = total/this.dataCrawled.XRateHistSize;
+		double ave = Math.round(ave1*1000)/1000;
 		System.out.println("Average during this time period is " + ave + "KRW.");
 		return ave;
 	}
