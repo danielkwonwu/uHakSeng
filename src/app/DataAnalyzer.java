@@ -32,6 +32,16 @@ public class DataAnalyzer {
 		System.out.println("Data from " + this.dataCrawled.XRateHist[this.dataCrawled.XRateHist.length - 1].time + " ~ " + this.dataCrawled.XRateHist[0].time + " (" + this.dataCrawled.XRateHistSize + ")");
 	}
 	
+	public double XRateMean() {
+		double total = 0;
+		for (int i = 0; i < this.dataCrawled.XRateHist.length; i++) {
+			total = total + this.dataCrawled.XRateHist[i].rate;
+		}
+		double ave = total/this.dataCrawled.XRateHistSize;
+		System.out.println("Average during this time period is " + ave + "KRW.");
+		return ave;
+	}
+	
 	public void briefCurrentWeather(String where) {
 		if (where == "St.Louis") {
 			System.out.println("St.Louis's current temperature is " + this.dataCrawled.stlWeatherDat.getCurrent() +"¡ÆC. High of " + this.dataCrawled.stlWeatherDat.getMax() + "¡ÆC and low of " + this.dataCrawled.stlWeatherDat.getMin() + "¡ÆC. Feels like " + this.dataCrawled.stlWeatherDat.getFeels() +"¡ÆC.");
@@ -79,6 +89,7 @@ public class DataAnalyzer {
 		DataAnalyzer k = new DataAnalyzer(new DataCrawlers());
 		k.briefCurrentXRate();
 		k.recentXRateTrend();
+		k.XRateMean();
 		System.out.println("\n");
 		k.briefCurrentWeather("St.Louis");
 		k.briefCurrentWeather("Seoul");
