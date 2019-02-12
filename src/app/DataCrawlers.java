@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 public class DataCrawlers {
 	
 	KorExRateDat currentXrate;
-	KorExRateDat[] XRateHist;
+	private KorExRateDat[] XRateHist;
 	int XRateHistSize;
 	WeatherDat seoulWeatherDat;
 	WeatherDat stlWeatherDat;
@@ -18,8 +18,8 @@ public class DataCrawlers {
 	
 	public DataCrawlers() throws IOException {
 		this.currentXrate = KorXRate();
-		this.XRateHist = KorXRateHist();
-		this.XRateHistSize = this.XRateHist.length;
+		this.setXRateHist(KorXRateHist());
+		this.XRateHistSize = this.getXRateHist().length;
 		this.seoulWeatherDat = SeoulWeather();
 		this.stlWeatherDat = StlWeather();
 		this.korHeadlines = new Headlines(getKorHeadlines(), this.currentXrate.time);
@@ -169,6 +169,12 @@ public class DataCrawlers {
 	
 	public static void main(String[] args) throws IOException, InterruptedException {
 
+	}
+	public KorExRateDat[] getXRateHist() {
+		return XRateHist;
+	}
+	public void setXRateHist(KorExRateDat[] xRateHist) {
+		XRateHist = xRateHist;
 	}
 
 }
